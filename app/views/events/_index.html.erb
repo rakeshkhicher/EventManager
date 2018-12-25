@@ -1,0 +1,36 @@
+<div class='.span9'>
+  <p id="notice"><%= notice %></p>
+
+  <div>
+    <h3>
+      <%= link_to 'Add Event', new_event_path %>
+    </h3>
+  </div>
+  <div class="alluserDropDown", style="float: right;">
+    <%= select_tag(:user_id, options_from_collection_for_select(User.all, 'id', 'name', @user&.id), include_blank: "All Users", class: 'userDrop')%>
+  </div>
+  <div class='calender'>
+    <%= month_calendar events: @events do |date, events| %>
+     <%= date.day %>
+     <%if @user && events_present_on_date(@user, date)%>
+       <%= link_to 'events', "events?user_id= #{@user.id} &date=#{date}" %>
+     <% end -%>
+     <% if @user %>
+       <div>
+         <font color="red", class = 'remainCount'>
+           <%= unaccepted_events(@user, date) %>
+         </font>
+       </div>
+       <div>
+         <font color="green" class = 'acceptCount' >
+           <%= accepted_events(@user, date) %>
+         </font>
+       </div>
+     <%else%>
+       <div class = 'eventCount'>
+           <%= events.count %>
+       </div>
+     <% end -%> 
+    <%end%> 
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h5> Hi <%= @user.email %>, </h5>
+    <p>
+      You are invited to event: <%= @event.title %>.<br>
+    </p>
+    <p>
+      time for event
+      start: <%= @event.start_date %>
+      end: <%= @event.end_date %>.<br>
+    </p>
+    <p>
+      To accept, please click on this link: <%= @url %>.
+    </p>
+  </body>
+</html>
